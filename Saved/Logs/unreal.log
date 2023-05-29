@@ -1254,3 +1254,179 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2023.05.29-11.56.57:982][595]LogOnline: OSS: Created online subsystem instance for: :Context_4
 [2023.05.29-11.56.57:985][595]PIE: Server logged in
 [2023.05.29-11.56.57:985][595]PIE: Play in editor total start time 0,075 seconds.
+[2023.05.29-11.57.27:031][  2]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.05.29-11.57.27:031][  2]LogWorld: BeginTearingDown for /Game/ThirdPerson/Maps/UEDPIE_0_ThirdPersonMap
+[2023.05.29-11.57.27:031][  2]LogWorld: UWorld::CleanupWorld for ThirdPersonMap, bSessionEnded=true, bCleanupResources=true
+[2023.05.29-11.57.27:031][  2]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.05.29-11.57.27:032][  2]LogContentBundle: [ThirdPersonMap(Standalone)] Deleting container.
+[2023.05.29-11.57.27:034][  2]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2023.05.29-11.57.27:036][  2]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.05.29-11.57.27:044][  2]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2023.05.29-11.57.27:044][  2]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 3
+[2023.05.29-11.57.27:044][  2]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2023.05.29-11.57.27:045][  2]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=3
+[2023.05.29-11.57.27:049][  2]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.05.29-11.57.27:050][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
+[2023.05.29-11.57.27:106][  5]LogPlayLevel: Display: Destroying online subsystem :Context_4
+[2023.05.29-11.57.31:642][372]Cmd: DELETE
+[2023.05.29-11.57.31:642][372]Cmd: ACTOR DELETE
+[2023.05.29-11.57.31:645][372]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.31:655][372]LogUObjectHash: Compacting FUObjectHashTables data took   0.87ms
+[2023.05.29-11.57.31:657][372]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.32:314][425]Cmd: DELETE
+[2023.05.29-11.57.32:314][425]Cmd: ACTOR DELETE
+[2023.05.29-11.57.32:316][425]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.32:326][425]LogUObjectHash: Compacting FUObjectHashTables data took   0.30ms
+[2023.05.29-11.57.32:327][425]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.32:813][463]Cmd: DELETE
+[2023.05.29-11.57.32:813][463]Cmd: ACTOR DELETE
+[2023.05.29-11.57.32:814][463]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.32:823][463]LogUObjectHash: Compacting FUObjectHashTables data took   0.63ms
+[2023.05.29-11.57.32:825][463]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.33:404][509]Cmd: DELETE
+[2023.05.29-11.57.33:405][509]Cmd: ACTOR DELETE
+[2023.05.29-11.57.33:406][509]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.33:415][509]LogUObjectHash: Compacting FUObjectHashTables data took   0.34ms
+[2023.05.29-11.57.33:416][509]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.34:053][559]Cmd: DELETE
+[2023.05.29-11.57.34:053][559]Cmd: ACTOR DELETE
+[2023.05.29-11.57.34:055][559]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.34:064][559]LogUObjectHash: Compacting FUObjectHashTables data took   0.31ms
+[2023.05.29-11.57.34:065][559]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.34:833][620]Cmd: DELETE
+[2023.05.29-11.57.34:833][620]Cmd: ACTOR DELETE
+[2023.05.29-11.57.34:834][620]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.34:844][620]LogUObjectHash: Compacting FUObjectHashTables data took   0.36ms
+[2023.05.29-11.57.34:845][620]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.35:424][667]Cmd: DELETE
+[2023.05.29-11.57.35:424][667]Cmd: ACTOR DELETE
+[2023.05.29-11.57.35:425][667]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.35:435][667]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2023.05.29-11.57.35:436][667]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.36:101][718]Cmd: DELETE
+[2023.05.29-11.57.36:101][718]Cmd: ACTOR DELETE
+[2023.05.29-11.57.36:102][718]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.36:113][718]LogUObjectHash: Compacting FUObjectHashTables data took   0.39ms
+[2023.05.29-11.57.36:114][718]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.37:196][801]Cmd: DELETE
+[2023.05.29-11.57.37:196][801]Cmd: ACTOR DELETE
+[2023.05.29-11.57.37:198][801]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.37:208][801]LogUObjectHash: Compacting FUObjectHashTables data took   0.29ms
+[2023.05.29-11.57.37:209][801]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.37:880][855]Cmd: DELETE
+[2023.05.29-11.57.37:880][855]Cmd: ACTOR DELETE
+[2023.05.29-11.57.37:882][855]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.37:891][855]LogUObjectHash: Compacting FUObjectHashTables data took   0.28ms
+[2023.05.29-11.57.37:892][855]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.38:052][869]LogDerivedDataCache: C:/Users/33769/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:05.124 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 3468 files in 4687 folders with total size 964 MiB.
+[2023.05.29-11.57.40:828][104]Cmd: DELETE
+[2023.05.29-11.57.40:828][104]Cmd: ACTOR DELETE
+[2023.05.29-11.57.40:830][104]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.40:840][104]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2023.05.29-11.57.40:841][104]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.42:001][212]Cmd: DELETE
+[2023.05.29-11.57.42:001][212]Cmd: ACTOR DELETE
+[2023.05.29-11.57.42:003][212]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.42:014][212]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2023.05.29-11.57.42:015][212]LogEditorActor: Deleted 1 Actors (0.014 secs)
+[2023.05.29-11.57.42:732][278]Cmd: DELETE
+[2023.05.29-11.57.42:732][278]Cmd: ACTOR DELETE
+[2023.05.29-11.57.42:733][278]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.42:743][278]LogUObjectHash: Compacting FUObjectHashTables data took   0.40ms
+[2023.05.29-11.57.42:745][278]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.43:344][332]Cmd: DELETE
+[2023.05.29-11.57.43:344][332]Cmd: ACTOR DELETE
+[2023.05.29-11.57.43:346][332]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.43:356][332]LogUObjectHash: Compacting FUObjectHashTables data took   0.34ms
+[2023.05.29-11.57.43:358][332]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.45:875][574]Cmd: DELETE
+[2023.05.29-11.57.45:875][574]Cmd: ACTOR DELETE
+[2023.05.29-11.57.45:876][574]LogEditorActor: Deleted Actor: TextRenderActor
+[2023.05.29-11.57.45:886][574]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2023.05.29-11.57.45:888][574]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.47:191][702]Cmd: DELETE
+[2023.05.29-11.57.47:191][702]Cmd: ACTOR DELETE
+[2023.05.29-11.57.47:192][702]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.47:201][702]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2023.05.29-11.57.47:203][702]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.48:309][808]Cmd: DELETE
+[2023.05.29-11.57.48:309][808]Cmd: ACTOR DELETE
+[2023.05.29-11.57.48:310][808]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.48:321][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.42ms
+[2023.05.29-11.57.48:323][808]LogEditorActor: Deleted 1 Actors (0.014 secs)
+[2023.05.29-11.57.48:943][864]Cmd: DELETE
+[2023.05.29-11.57.48:943][864]Cmd: ACTOR DELETE
+[2023.05.29-11.57.48:945][864]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.48:954][864]LogUObjectHash: Compacting FUObjectHashTables data took   0.67ms
+[2023.05.29-11.57.48:956][864]LogEditorActor: Deleted 1 Actors (0.014 secs)
+[2023.05.29-11.57.49:705][933]Cmd: DELETE
+[2023.05.29-11.57.49:705][933]Cmd: ACTOR DELETE
+[2023.05.29-11.57.49:707][933]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.49:717][933]LogUObjectHash: Compacting FUObjectHashTables data took   0.31ms
+[2023.05.29-11.57.49:718][933]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.50:175][975]Cmd: DELETE
+[2023.05.29-11.57.50:176][975]Cmd: ACTOR DELETE
+[2023.05.29-11.57.50:177][975]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.50:185][975]LogUObjectHash: Compacting FUObjectHashTables data took   0.29ms
+[2023.05.29-11.57.50:188][975]LogEditorActor: Deleted 1 Actors (0.012 secs)
+[2023.05.29-11.57.50:649][ 16]Cmd: DELETE
+[2023.05.29-11.57.50:649][ 16]Cmd: ACTOR DELETE
+[2023.05.29-11.57.50:650][ 16]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.50:660][ 16]LogUObjectHash: Compacting FUObjectHashTables data took   0.39ms
+[2023.05.29-11.57.50:662][ 16]LogEditorActor: Deleted 1 Actors (0.013 secs)
+[2023.05.29-11.57.51:146][ 57]Cmd: DELETE
+[2023.05.29-11.57.51:146][ 57]Cmd: ACTOR DELETE
+[2023.05.29-11.57.51:147][ 57]LogEditorActor: Deleted Actor: StaticMeshActor
+[2023.05.29-11.57.51:158][ 57]LogUObjectHash: Compacting FUObjectHashTables data took   0.31ms
+[2023.05.29-11.57.51:160][ 57]LogEditorActor: Deleted 1 Actors (0.014 secs)
+[2023.05.29-11.57.55:952][533]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2023.05.29-11.57.55:957][533]LogContentBundle: [ThirdPersonMap(Standalone)] Generating Streaming for 0 Content Bundles.
+[2023.05.29-11.57.55:957][533]LogWorldPartition: Display: GenerateStreaming started...
+[2023.05.29-11.57.55:957][533]LogWorldPartition: Display: GetPartitionedActors started...
+[2023.05.29-11.57.55:957][533]LogWorldPartition: Display: GetPartitionedActors took 4 us (total: 25 us)
+[2023.05.29-11.57.55:957][533]LogWorldPartition: Display: GenerateStreaming took 63 us (total: 479 us)
+[2023.05.29-11.57.55:958][533]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2023.05.29-11.57.55:958][533]PIE: New page: PIE session: ThirdPersonMap (29 mai 2023 à 15:57:55)
+[2023.05.29-11.57.55:958][533]LogPlayLevel: Creating play world package: /Game/ThirdPerson/Maps/UEDPIE_0_ThirdPersonMap
+[2023.05.29-11.57.55:960][533]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002550s)
+[2023.05.29-11.57.55:960][533]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPerson/Maps/ThirdPersonMap.ThirdPersonMap to /Game/ThirdPerson/Maps/UEDPIE_0_ThirdPersonMap.ThirdPersonMap (0.002573s)
+[2023.05.29-11.57.55:960][533]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2023.05.29-11.57.55:960][533]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2023.05.29-11.57.55:961][533]LogAIModule: Creating AISystem for world ThirdPersonMap
+[2023.05.29-11.57.55:961][533]LogWorldPartition: ULevel::OnLevelLoaded(ThirdPersonMap)(bIsOwningWorldGameWorld=1, bIsOwningWorldPartitioned=1, bIsValidLevelInstance=0, InitializeForMainWorld=1, InitializeForEditor=0, InitializeForGame=1)
+[2023.05.29-11.57.55:961][533]LogWorldPartition: Display: WorldPartition initialize started...
+[2023.05.29-11.57.55:961][533]LogWorldPartition: UWorldPartition::Initialize(Asset=ThirdPersonMap, IsEditor=0, bPIEWorldTravel=0 IsGame=0, IsCooking=0)
+[2023.05.29-11.57.55:962][533]LogContentBundle: [ThirdPersonMap(Standalone)] Creating new contrainer.
+[2023.05.29-11.57.55:962][533]LogWorldPartition: Display: WorldPartition initialize took 609 us (total: 182 ms)
+[2023.05.29-11.57.55:962][533]LogPlayLevel: PIE: World Init took: (0.001567s)
+[2023.05.29-11.57.55:970][533]LogUObjectHash: Compacting FUObjectHashTables data took   0.80ms
+[2023.05.29-11.57.55:971][533]LogAudio: Display: Creating Audio Device:                 Id: 4, Scope: Unique, Realtime: True
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Max Channels (voices):				  0
+[2023.05.29-11.57.55:971][533]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2023.05.29-11.57.55:971][533]LogAudio: Display: AudioDevice MaxSources: 32
+[2023.05.29-11.57.55:972][533]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2023.05.29-11.57.55:972][533]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2023.05.29-11.57.55:972][533]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2023.05.29-11.57.55:973][533]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2023.05.29-11.57.55:992][533]LogAudioMixer: Display: Using Audio Hardware Device Haut-parleurs (2- Razer BlackShark V2 Pro)
+[2023.05.29-11.57.55:993][533]LogAudioMixer: Display: Initializing Sound Submixes...
+[2023.05.29-11.57.55:993][533]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2023.05.29-11.57.55:993][533]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2023.05.29-11.57.55:994][533]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=4
+[2023.05.29-11.57.55:994][533]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=4
+[2023.05.29-11.57.55:995][533]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=4
+[2023.05.29-11.57.55:995][533]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=4
+[2023.05.29-11.57.55:995][533]LogInit: FAudioDevice initialized with ID 4.
+[2023.05.29-11.57.55:995][533]LogAudio: Display: Audio Device (ID: 4) registered with world 'ThirdPersonMap'.
+[2023.05.29-11.57.55:995][533]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 4
+[2023.05.29-11.57.55:998][533]LogLoad: Game class is 'BP_ThirdPersonGameMode_C'
+[2023.05.29-11.57.55:999][533]LogWorld: Bringing World /Game/ThirdPerson/Maps/UEDPIE_0_ThirdPersonMap.ThirdPersonMap up for play (max tick rate 0) at 2023.05.29-13.57.55
+[2023.05.29-11.57.55:999][533]LogWorld: Bringing up level for play took: 0.000738
+[2023.05.29-11.57.56:000][533]LogOnline: OSS: Created online subsystem instance for: :Context_5
+[2023.05.29-11.57.56:004][533]PIE: Server logged in
+[2023.05.29-11.57.56:005][533]PIE: Play in editor total start time 0,048 seconds.
