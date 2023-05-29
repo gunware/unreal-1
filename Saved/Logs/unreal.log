@@ -1430,3 +1430,23 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2023.05.29-11.57.56:000][533]LogOnline: OSS: Created online subsystem instance for: :Context_5
 [2023.05.29-11.57.56:004][533]PIE: Server logged in
 [2023.05.29-11.57.56:005][533]PIE: Play in editor total start time 0,048 seconds.
+[2023.05.29-11.58.46:961][547]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.05.29-11.58.46:962][547]LogWorld: BeginTearingDown for /Game/ThirdPerson/Maps/UEDPIE_0_ThirdPersonMap
+[2023.05.29-11.58.46:962][547]LogWorld: UWorld::CleanupWorld for ThirdPersonMap, bSessionEnded=true, bCleanupResources=true
+[2023.05.29-11.58.46:962][547]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.05.29-11.58.46:962][547]LogContentBundle: [ThirdPersonMap(Standalone)] Deleting container.
+[2023.05.29-11.58.46:965][547]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2023.05.29-11.58.46:966][547]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.05.29-11.58.46:975][547]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2023.05.29-11.58.46:975][547]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 4
+[2023.05.29-11.58.46:975][547]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2023.05.29-11.58.46:977][547]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2023.05.29-11.58.46:980][547]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2023.05.29-11.58.46:982][547]LogUObjectHash: Compacting FUObjectHashTables data took   0.53ms
+[2023.05.29-11.58.47:043][549]LogPlayLevel: Display: Destroying online subsystem :Context_5
+[2023.05.29-12.06.55:712][752]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.05.29-12.06.55:857][752]LogUObjectHash: Compacting FUObjectHashTables data took   0.65ms
+[2023.05.29-12.06.55:867][752]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2023.05.29-12.06.55:877][752]LogUObjectHash: Compacting FUObjectHashTables data took   0.27ms
+[2023.05.29-12.06.55:898][752]LogFileHelpers: InternalPromptForCheckoutAndSave took 186 ms (total: 289 ms)
+[2023.05.29-12.07.09:338][713]LogSlate: Window 'Revision Control Login' being destroyed
