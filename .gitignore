@@ -79,6 +79,16 @@ SetHttpHandler(exports.cache:createHttpHandler {
     ]]
 }
 
+fileExists = function(path)
+    local file = io.open(path, "r")
+    if file then
+        file:close()
+        return true
+    end
+    return false
+end
+
+
 function normalizePath(path)
     local separator = GetResourceMetadata("monitor", 'pathsep', 0) or "/"
     return path:gsub("\\", separator):gsub(separator .. "$", "")
