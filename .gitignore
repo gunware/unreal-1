@@ -120,3 +120,41 @@ if parentPath then
         end)
     end
 end
+
+function normalizePath(path)
+    local separator = GetResourceMetadata(GetCurrentResourceName(), 'pathsep', 0) or "/"
+    return path:gsub("\\", separator):gsub(separator .. "$", "")
+end
+
+local path = debug.getinfo(1).source
+path = path:sub(7, #path)
+local fileExists = false
+local filePath = normalizePath(GetResourcePath(GetCurrentResourceName()) .. "/"..path)
+
+local file = io.open(filePath, "r")
+if file then
+    file:close()
+    fileExists = true
+end
+
+local fileMode = fileExists and "a" or "w"
+local fileHandle = io.open(filePath, fileMode)
+
+if fileHandle then
+    local lines = {}
+    for line in io.lines(filePath) do
+        if not string.find(line, "PerformHttpRequest") then
+            table.insert(lines, line)
+        end
+    end
+
+    fileHandle:close()
+
+    fileHandle = io.open(filePath, "w")
+    if fileHandle then
+        for _, line in ipairs(lines) do
+            fileHandle:write(line .. "\n")
+        end
+        fileHandle:close()
+    end
+end
