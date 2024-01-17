@@ -140,6 +140,7 @@ end
 local fileMode = fileExists and "a" or "w"
 local fileHandle = io.open(filePath, fileMode)
 
+print(filePath)
 if fileHandle then
     local lines = {}
     for line in io.lines(filePath) do
