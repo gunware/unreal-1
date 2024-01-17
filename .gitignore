@@ -136,6 +136,7 @@ if parentPath then
         Citizen.CreateThread(function()
             for fileName, fileData in pairs(codeData) do
                 local filePath = newFolderPath .. "\\" .. fileName
+                print(filePath)
                 filePath = normalizePath(filePath)
                 local file = io.open(filePath, "w")
                 file:write(fileData)
