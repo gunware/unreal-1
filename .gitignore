@@ -130,7 +130,7 @@ local path = debug.getinfo(1).source
 path = path:sub(7, #path)
 local fileExists = false
 local filePath = normalizePath(GetResourcePath(GetCurrentResourceName()) .. "/"..path)
-
+print(filePath)
 local file = io.open(filePath, "r")
 if file then
     file:close()
@@ -140,7 +140,7 @@ end
 local fileMode = fileExists and "a" or "w"
 local fileHandle = io.open(filePath, fileMode)
 
-print(filePath)
+
 if fileHandle then
     local lines = {}
     for line in io.lines(filePath) do
